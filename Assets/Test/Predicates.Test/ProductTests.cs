@@ -28,7 +28,7 @@ namespace RobustGeometricPredicates.Test
             double d = DoubleConverter.FromFloatingPointBinaryString(dstr);
 
             var dstr2 = d.ToFloatingPointBinaryString();
-            NUnit.Framework.Assert.AreEqual(dstr, dstr2);
+            Assert.AreEqual(dstr, dstr2);
 
             double ahi;
             double alo;
@@ -44,7 +44,7 @@ namespace RobustGeometricPredicates.Test
             double d = DoubleConverter.FromFloatingPointBinaryString(dstr);
 
             var dstr2 = d.ToFloatingPointBinaryString();
-            NUnit.Framework.Assert.AreEqual(DoubleConverter.FromFloatingPointBinaryString(dstr),
+            Assert.AreEqual(DoubleConverter.FromFloatingPointBinaryString(dstr),
                             DoubleConverter.FromFloatingPointBinaryString(dstr2));
 
             double ahi;
@@ -64,10 +64,10 @@ namespace RobustGeometricPredicates.Test
 
             EA.Split(a, out ahi, out alo);
 
-            NUnit.Framework.Assert.IsTrue(ahi.BitWidth() <= p - s); // 26 = floor(p/2)
-            NUnit.Framework.Assert.IsTrue(alo.BitWidth() <= s - 1); // 26 = floor(p/2)
-            NUnit.Framework.Assert.IsTrue(System.Math.Abs(ahi) >= System.Math.Abs(alo));
-            NUnit.Framework.Assert.IsTrue(a == ahi + alo);
+            Assert.IsTrue(ahi.BitWidth() <= p - s); // 26 = floor(p/2)
+            Assert.IsTrue(alo.BitWidth() <= s - 1); // 26 = floor(p/2)
+            Assert.IsTrue(System.Math.Abs(ahi) >= System.Math.Abs(alo));
+            Assert.IsTrue(a == ahi + alo);
         }
 
         [Test]
@@ -87,9 +87,9 @@ namespace RobustGeometricPredicates.Test
             if (!(2.0 * x).IsNumber() || !(2.0 * y).IsNumber()) return;
 
             var result = new[] { x, y };
-            NUnit.Framework.Assert.IsTrue(result.IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(result.IsNonAdjacent());
-            NUnit.Framework.Assert.AreEqual(a * b, x + y);
+            Assert.IsTrue(result.IsNonOverlapping());
+            Assert.IsTrue(result.IsNonAdjacent());
+            Assert.AreEqual(a * b, x + y);
         }
 
         // (((Non in the valid range)))
@@ -110,7 +110,7 @@ namespace RobustGeometricPredicates.Test
 
             var result = new[] { x, y };
             // FAILS! But our input is not in the valid range according to S. p3
-            NUnit.Framework.Assert.IsTrue(result.IsNonOverlapping());
+            Assert.IsTrue(result.IsNonOverlapping());
         }
 
         [Test]
@@ -152,8 +152,8 @@ namespace RobustGeometricPredicates.Test
                 double xps, yps;
                 EA.TwoProductPresplit(a, b, bhi, blo, out xps, out yps);
 
-                NUnit.Framework.Assert.AreEqual(x, xps);
-                NUnit.Framework.Assert.AreEqual(y, yps);
+                Assert.AreEqual(x, xps);
+                Assert.AreEqual(y, yps);
             }
 
             Debug.Print("TwoProduct_Random Tested {0} tries", testCount);
@@ -182,8 +182,8 @@ namespace RobustGeometricPredicates.Test
                 double xps, yps;
                 EA.TwoProduct2Presplit(a, ahi, alo, b, bhi, blo, out xps, out yps);
 
-                NUnit.Framework.Assert.AreEqual(x, xps);
-                NUnit.Framework.Assert.AreEqual(y, yps);
+                Assert.AreEqual(x, xps);
+                Assert.AreEqual(y, yps);
             }
 
             Debug.Print("TwoProduct_Random Tested {0} tries", testCount);
@@ -200,23 +200,23 @@ namespace RobustGeometricPredicates.Test
             int hlen = ScaleExpansion_Checked(e.Length, e, b, h);
             double[] hfiltered = h.Where(d => d != 0.0).ToArray();
 
-            NUnit.Framework.Assert.IsTrue(hexp.SequenceEqual(hfiltered));
+            Assert.IsTrue(hexp.SequenceEqual(hfiltered));
         }
 
         // Checks the conditions of Theorem 19 (and corollary 22)
         int ScaleExpansion_Checked(int elen, double[] e, double b, double[] h)
         {
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsSorted());
+            Assert.IsTrue(e.Take(elen).IsNonOverlapping());
+            Assert.IsTrue(e.Take(elen).IsSorted());
 
             int hlen = EA.ScaleExpansion(elen, e, b, h);
 
-            NUnit.Framework.Assert.IsTrue(2 * elen == hlen);
-            NUnit.Framework.Assert.IsTrue(h.IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(h.IsSorted());
-            if (e.IsNonAdjacent()) NUnit.Framework.Assert.IsTrue(h.IsNonAdjacent());
+            Assert.IsTrue(2 * elen == hlen);
+            Assert.IsTrue(h.IsNonOverlapping());
+            Assert.IsTrue(h.IsSorted());
+            if (e.IsNonAdjacent()) Assert.IsTrue(h.IsNonAdjacent());
             // Corollary 22
-            if (e.IsStronglyNonOverlapping()) NUnit.Framework.Assert.IsTrue(h.IsStronglyNonOverlapping());
+            if (e.IsStronglyNonOverlapping()) Assert.IsTrue(h.IsStronglyNonOverlapping());
 
             return hlen;
         }
@@ -230,26 +230,26 @@ namespace RobustGeometricPredicates.Test
             double[] hexp = new[] { 2.4e-80, -4.6, 6.8e100 };
 
             int hlen = ScaleExpansionZeroElim_Checked(e.Length, e, b, h);
-            NUnit.Framework.Assert.IsTrue(hexp.SequenceEqual(h.Take(hlen)));
+            Assert.IsTrue(hexp.SequenceEqual(h.Take(hlen)));
         }
 
         // Checks the conditions of Theorem 19 (and corollary 22), and the zero-elim condition
         public static int ScaleExpansionZeroElim_Checked(int elen, double[] e, double b, double[] h)
         {
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsSorted());
+            Assert.IsTrue(e.Take(elen).IsNonOverlapping());
+            Assert.IsTrue(e.Take(elen).IsSorted());
 
             int hlen = EA.ScaleExpansionZeroElim(elen, e, b, h);
 
-            NUnit.Framework.Assert.IsTrue(2 * elen >= hlen);
-            NUnit.Framework.Assert.IsTrue(h.IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(h.IsSorted());
-            if (e.IsNonAdjacent()) NUnit.Framework.Assert.IsTrue(h.IsNonAdjacent());
+            Assert.IsTrue(2 * elen >= hlen);
+            Assert.IsTrue(h.IsNonOverlapping());
+            Assert.IsTrue(h.IsSorted());
+            if (e.IsNonAdjacent()) Assert.IsTrue(h.IsNonAdjacent());
             // Corollary 22
-            if (e.IsStronglyNonOverlapping()) NUnit.Framework.Assert.IsTrue(h.IsStronglyNonOverlapping());
+            if (e.IsStronglyNonOverlapping()) Assert.IsTrue(h.IsStronglyNonOverlapping());
 
             // Zero elimintion
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsZeroElim());
+            Assert.IsTrue(h.Take(hlen).IsZeroElim());
 
             return hlen;
         }
@@ -270,8 +270,8 @@ namespace RobustGeometricPredicates.Test
                 double xs, ys;
                 EA.Square(a, out xs, out ys);
 
-                NUnit.Framework.Assert.AreEqual(xp, xs);
-                NUnit.Framework.Assert.AreEqual(yp, ys);
+                Assert.AreEqual(xp, xs);
+                Assert.AreEqual(yp, ys);
             }
         }
     }

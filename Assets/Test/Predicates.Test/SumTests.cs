@@ -23,8 +23,8 @@ namespace RobustGeometricPredicates.Test
             double x; double y;
             EA.FastTwoSum(a, b, out x, out y);
 
-            NUnit.Framework.Assert.AreEqual(x_correct, x);
-            NUnit.Framework.Assert.AreEqual(y_correct, y);
+            Assert.AreEqual(x_correct, x);
+            Assert.AreEqual(y_correct, y);
         }
 
         [Test]
@@ -40,8 +40,8 @@ namespace RobustGeometricPredicates.Test
             double x; double y;
             EA.FastTwoSum(a, b, out x, out y);
 
-            NUnit.Framework.Assert.AreEqual(x_correct, x);
-            NUnit.Framework.Assert.AreEqual(y_correct, y);
+            Assert.AreEqual(x_correct, x);
+            Assert.AreEqual(y_correct, y);
         }
 
         [Test]
@@ -61,8 +61,8 @@ namespace RobustGeometricPredicates.Test
                 {
                     testsPerformed++;
                     EA.FastTwoSum(a, b, out x, out y);
-                    NUnit.Framework.Assert.IsTrue(ExpansionExtensions.AreNonOverlapping(x, y));
-                    NUnit.Framework.Assert.IsTrue(ExpansionExtensions.AreNonAdjacent(x, y));
+                    Assert.IsTrue(ExpansionExtensions.AreNonOverlapping(x, y));
+                    Assert.IsTrue(ExpansionExtensions.AreNonAdjacent(x, y));
                 }
             }
 
@@ -82,8 +82,8 @@ namespace RobustGeometricPredicates.Test
             double x; double y;
             EA.TwoSum(a, b, out x, out y);
 
-            NUnit.Framework.Assert.AreEqual(x_correct, x);
-            NUnit.Framework.Assert.AreEqual(y_correct, y);
+            Assert.AreEqual(x_correct, x);
+            Assert.AreEqual(y_correct, y);
         }
 
         [Test]
@@ -99,8 +99,8 @@ namespace RobustGeometricPredicates.Test
                 double x; double y;
 
                 EA.TwoSum(a, b, out x, out y);
-                NUnit.Framework.Assert.IsTrue(ExpansionExtensions.AreNonOverlapping(x, y));
-                NUnit.Framework.Assert.IsTrue(ExpansionExtensions.AreNonAdjacent(x, y));
+                Assert.IsTrue(ExpansionExtensions.AreNonOverlapping(x, y));
+                Assert.IsTrue(ExpansionExtensions.AreNonAdjacent(x, y));
             }
         }
 

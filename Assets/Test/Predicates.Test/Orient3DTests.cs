@@ -66,7 +66,7 @@ namespace RobustGeometricPredicates.Test
         {
             for (int i = 1; i < doubles.Length; i++)
             {
-                NUnit.Framework.Assert.AreEqual(doubles[0], doubles[i]);
+                Assert.AreEqual(doubles[0], doubles[i]);
             }
         }
 
@@ -74,7 +74,7 @@ namespace RobustGeometricPredicates.Test
         {
             for (int i = 1; i < doubles.Length; i++)
             {
-                NUnit.Framework.Assert.AreEqual(System.Math.Sign(doubles[0]), System.Math.Sign(doubles[i]));
+                Assert.AreEqual(System.Math.Sign(doubles[0]), System.Math.Sign(doubles[i]));
             }
         }
 
@@ -153,7 +153,7 @@ namespace RobustGeometricPredicates.Test
             BigInteger b2 = Orient3DInt64(plA, plB, plC, plE);
             BigInteger b3 = Orient3DInt64(plB, plC, plE, plD);
 
-            NUnit.Framework.Assert.AreEqual(s1, (double)b1);
+            Assert.AreEqual(s1, (double)b1);
 
             //double d1m = Orient3DExact_Checked2(pA, pC, pB, pD);
 
@@ -400,10 +400,10 @@ namespace RobustGeometricPredicates.Test
             SumTests.TwoTwoDiff_Checked(bxdy1, bxdy0, dxby1, dxby0, out bd[3], out bd[2], out bd[1], out bd[0]); // bd = bx.dy - dx.by
 
 
-            NUnit.Framework.Assert.AreEqual(bc[3], -cb[3]);
-            NUnit.Framework.Assert.AreEqual(bc[2], -cb[2]);
-            NUnit.Framework.Assert.AreEqual(da[2], -ad[2]);
-            NUnit.Framework.Assert.AreEqual(da[2], -ad[2]);
+            Assert.AreEqual(bc[3], -cb[3]);
+            Assert.AreEqual(bc[2], -cb[2]);
+            Assert.AreEqual(da[2], -ad[2]);
+            Assert.AreEqual(da[2], -ad[2]);
 
             templen = ExpansionTests.FastExpansionSumZeroElim_Checked(4, cd, 4, da, temp8);
             cdalen = ExpansionTests.FastExpansionSumZeroElim_Checked(templen, temp8, 4, ac, cda);           // cda
@@ -466,10 +466,10 @@ namespace RobustGeometricPredicates.Test
             templen = ExpansionTests.FastExpansionSumZeroElim_Checked(4, cb, 4, bd, temp8);
             cbdlen = ExpansionTests.FastExpansionSumZeroElim_Checked(templen, temp8, 4, cd, cbd);           // cbd
 
-            NUnit.Framework.Assert.IsTrue(bcd.SequenceEqual(cbd.Select(d=>-d)));
-            NUnit.Framework.Assert.IsTrue(cda.SequenceEqual(acd));
-            NUnit.Framework.Assert.IsTrue(dab.SequenceEqual(abd));
-            NUnit.Framework.Assert.IsTrue(abc.SequenceEqual(acb.Select(d => -d)));
+            Assert.IsTrue(bcd.SequenceEqual(cbd.Select(d=>-d)));
+            Assert.IsTrue(cda.SequenceEqual(acd));
+            Assert.IsTrue(dab.SequenceEqual(abd));
+            Assert.IsTrue(abc.SequenceEqual(acb.Select(d => -d)));
 
             //Assert.AreEqual(dab[0], bda[0]);
             //Assert.AreEqual(bcd[0], -cbd[0]);
@@ -479,10 +479,10 @@ namespace RobustGeometricPredicates.Test
             b2len = ProductTests.ScaleExpansionZeroElim_Checked(acdlen, acd, pb[2], b2det);
             d2len = ProductTests.ScaleExpansionZeroElim_Checked(acblen, acb, -pd[2], d2det);
 
-            NUnit.Framework.Assert.IsTrue(adet.SequenceEqual(a2det.Select(d => -d)));
-            NUnit.Framework.Assert.IsTrue(bdet.SequenceEqual(b2det.Select(d => -d)));
-            NUnit.Framework.Assert.IsTrue(cdet.SequenceEqual(c2det.Select(d => -d)));
-            NUnit.Framework.Assert.IsTrue(ddet.SequenceEqual(d2det.Select(d => -d)));
+            Assert.IsTrue(adet.SequenceEqual(a2det.Select(d => -d)));
+            Assert.IsTrue(bdet.SequenceEqual(b2det.Select(d => -d)));
+            Assert.IsTrue(cdet.SequenceEqual(c2det.Select(d => -d)));
+            Assert.IsTrue(ddet.SequenceEqual(d2det.Select(d => -d)));
 
             /// ///////////////
 
@@ -501,8 +501,8 @@ namespace RobustGeometricPredicates.Test
 
             //Assert.AreEqual(deter2[deter2len - 1], deter3[deter3len - 1]);
             //Assert.AreEqual(deter[deterlen - 1], -deter2[deter2len - 1]);
-            NUnit.Framework.Assert.IsTrue((deter[deterlen - 1] == 0.0) == (deter2[deter2len - 1] == 0.0));
-            NUnit.Framework.Assert.IsTrue((deter2[deter2len - 1] == 0.0) == (deter3[deter3len - 1] == 0.0));
+            Assert.IsTrue((deter[deterlen - 1] == 0.0) == (deter2[deter2len - 1] == 0.0));
+            Assert.IsTrue((deter2[deter2len - 1] == 0.0) == (deter3[deter3len - 1] == 0.0));
             return deter[deterlen - 1];
         }
 

@@ -18,25 +18,25 @@ namespace RobustGeometricPredicates.Test
             double[] p3 = new[] { 0.79999999999999993,  0.80000000000000004 };
             double[] p4 = new[] { 1.267650600228229e30, 1.2676506002282291e30 };
 
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p1, p2, p3) > 0.0);  // Wrong!
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p1, p2, p3) < 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p1, p2, p3) < 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p1, p2, p3) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p1, p2, p3) > 0.0);  // Wrong!
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p1, p2, p3) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p1, p2, p3) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p1, p2, p3) < 0.0);
 
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p1, p2, p4) == 0.0); // Wrong!
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p1, p2, p4) < 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p1, p2, p4) < 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p1, p2, p4) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p1, p2, p4) == 0.0); // Wrong!
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p1, p2, p4) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p1, p2, p4) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p1, p2, p4) < 0.0);
 
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p2, p3, p4) == 0.0); // Wrong!
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p2, p3, p4) < 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p2, p3, p4) < 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p2, p3, p4) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p2, p3, p4) == 0.0); // Wrong!
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p2, p3, p4) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p2, p3, p4) < 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p2, p3, p4) < 0.0);
 
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p3, p1, p4) == 0.0); // Wrong!
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p3, p1, p4) > 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p3, p1, p4) > 0.0);
-            NUnit.Framework.Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p3, p1, p4) > 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DFast(p3, p1, p4) == 0.0); // Wrong!
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DExact(p3, p1, p4) > 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2DSlow(p3, p1, p4) > 0.0);
+            Assert.IsTrue(GeometricPredicatesManaged.Orient2D(p3, p1, p4) > 0.0);
         }
 
         // More examples from 'Robustness Problems' -

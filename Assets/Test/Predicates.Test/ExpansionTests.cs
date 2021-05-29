@@ -21,21 +21,21 @@ namespace RobustGeometricPredicates.Test
             var n = GrowExpansion_Checked(e.Length, e, b, h);
 
             // Check that we get the expected result
-            NUnit.Framework.Assert.AreEqual(3, n);
-            NUnit.Framework.Assert.AreEqual(0.0, h[0]);
-            NUnit.Framework.Assert.AreEqual(25.0, h[1]);
-            NUnit.Framework.Assert.AreEqual(e[1], h[2]);
+            Assert.AreEqual(3, n);
+            Assert.AreEqual(0.0, h[0]);
+            Assert.AreEqual(25.0, h[1]);
+            Assert.AreEqual(e[1], h[2]);
         }
 
         // This checks all the expansion conditions of S. Theorem 10, but not the actual sum.
         int GrowExpansion_Checked(int elen, double[] e, double b, double[] h)
         {
             // Always conditions for calling GrowExpansion
-            NUnit.Framework.Assert.IsTrue(e.Length >= elen);
-            NUnit.Framework.Assert.IsTrue(h.Length >= elen + 1);
+            Assert.IsTrue(e.Length >= elen);
+            Assert.IsTrue(h.Length >= elen + 1);
 
-            NUnit.Framework.Assert.IsTrue(h.Length == e.Length + 1);
-            NUnit.Framework.Assert.IsTrue(e.IsNonOverlapping() && e.IsSorted());
+            Assert.IsTrue(h.Length == e.Length + 1);
+            Assert.IsTrue(e.IsNonOverlapping() && e.IsSorted());
 
             int  e_Length = e.Length;
             bool e_IsNonAdjacent = e.IsNonAdjacent();
@@ -43,15 +43,15 @@ namespace RobustGeometricPredicates.Test
 
             int n = EA.GrowExpansion(elen, e, b, h);
 
-            NUnit.Framework.Assert.AreEqual(e_Length + 1, n);
-            NUnit.Framework.Assert.IsTrue(h.IsNonOverlapping() && h.IsSorted());
+            Assert.AreEqual(e_Length + 1, n);
+            Assert.IsTrue(h.IsNonOverlapping() && h.IsSorted());
 
             // Extra invariants that are maintained by GrowExpansion
             // That NonAdjacent is maintained is part of S. Theorem 10
-            if (e_IsNonAdjacent) NUnit.Framework.Assert.IsTrue(h.IsNonAdjacent());
+            if (e_IsNonAdjacent) Assert.IsTrue(h.IsNonAdjacent());
             // That StronglyNonOverlapping is maintained is not part of Theorem 10,
             // but claimed in the predicates.c implementation comments.
-            if (e_IsStronglyNonOverlapping) NUnit.Framework.Assert.IsTrue(h.IsStronglyNonOverlapping());
+            if (e_IsStronglyNonOverlapping) Assert.IsTrue(h.IsStronglyNonOverlapping());
 
             return n;
         }
@@ -67,9 +67,9 @@ namespace RobustGeometricPredicates.Test
             var p = ExpansionSum_Checked(e, f, h);
 
             // Check that we get the expected result
-            NUnit.Framework.Assert.AreEqual(5, p);
-            NUnit.Framework.Assert.AreEqual(0.0, h[0]);
-            NUnit.Framework.Assert.AreEqual(15.0, h[1]);
+            Assert.AreEqual(5, p);
+            Assert.AreEqual(0.0, h[0]);
+            Assert.AreEqual(15.0, h[1]);
             // TODO: Check a bit more...
         }
 
@@ -78,9 +78,9 @@ namespace RobustGeometricPredicates.Test
         public static int ExpansionSum_Checked(double[] e, double[] f, double[] h)
         {
             // Always conditions for calling GrowExpansion
-            NUnit.Framework.Assert.IsTrue(h.Length == e.Length + f.Length);
-            NUnit.Framework.Assert.IsTrue(e.IsNonOverlapping() && e.IsSorted());
-            NUnit.Framework.Assert.IsTrue(f.IsNonOverlapping() && f.IsSorted());
+            Assert.IsTrue(h.Length == e.Length + f.Length);
+            Assert.IsTrue(e.IsNonOverlapping() && e.IsSorted());
+            Assert.IsTrue(f.IsNonOverlapping() && f.IsSorted());
 
             int  e_Length = e.Length;
             bool e_IsNonAdjacent = e.IsNonAdjacent();
@@ -89,15 +89,15 @@ namespace RobustGeometricPredicates.Test
 
             int p = EA.ExpansionSum(e.Length, e, f.Length, f, h);
 
-            NUnit.Framework.Assert.AreEqual(e_Length + f_Length, p);
-            NUnit.Framework.Assert.IsTrue(h.IsNonOverlapping() && h.IsSorted());
+            Assert.AreEqual(e_Length + f_Length, p);
+            Assert.IsTrue(h.IsNonOverlapping() && h.IsSorted());
 
             // Extra invariant that is maintained by ExpansionSum
             // That NonAdjacent is maintained is part of S. Theorem 12
-            if (e_IsNonAdjacent && f_IsNonAdjacent) NUnit.Framework.Assert.IsTrue(h.IsNonAdjacent());
+            if (e_IsNonAdjacent && f_IsNonAdjacent) Assert.IsTrue(h.IsNonAdjacent());
             // In addition, the predicates.c file asserts that if e is NonAdjacent,
             // then h will also be (without mentioning f) - (maybe a copy from Grow_Expansion?)
-            if (e_IsNonAdjacent) NUnit.Framework.Assert.IsTrue(h.IsNonAdjacent());
+            if (e_IsNonAdjacent) Assert.IsTrue(h.IsNonAdjacent());
 
             return p;
         }
@@ -113,9 +113,9 @@ namespace RobustGeometricPredicates.Test
             var hlen = FastExpansionSum_Checked(e.Length, e, f.Length, f, h);
 
             // Check that we get the expected result
-            NUnit.Framework.Assert.AreEqual(5, hlen);
-            NUnit.Framework.Assert.AreEqual(0.0, h[0]);
-            NUnit.Framework.Assert.AreEqual(15.0, h[1]);
+            Assert.AreEqual(5, hlen);
+            Assert.AreEqual(0.0, h[0]);
+            Assert.AreEqual(15.0, h[1]);
             // TODO: Check a bit more...
         }
 
@@ -125,19 +125,19 @@ namespace RobustGeometricPredicates.Test
         int FastExpansionSum_Checked(int elen, double[] e, int flen, double[] f, double[] h)
         {
             // Always conditions for calling GrowExpansion
-            NUnit.Framework.Assert.IsTrue(e.Length >= elen);
-            NUnit.Framework.Assert.IsTrue(f.Length >= flen);
-            NUnit.Framework.Assert.IsTrue(h.Length >= elen + flen);
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(e.Take(flen).IsStronglyNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(f.Take(flen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(f.Take(flen).IsStronglyNonOverlapping());
+            Assert.IsTrue(e.Length >= elen);
+            Assert.IsTrue(f.Length >= flen);
+            Assert.IsTrue(h.Length >= elen + flen);
+            Assert.IsTrue(e.Take(elen).IsSorted());
+            Assert.IsTrue(e.Take(flen).IsStronglyNonOverlapping());
+            Assert.IsTrue(f.Take(flen).IsSorted());
+            Assert.IsTrue(f.Take(flen).IsStronglyNonOverlapping());
 
             int hlen = EA.FastExpansionSum(elen, e, flen, f, h);
 
-            NUnit.Framework.Assert.IsTrue(elen + flen == hlen);
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsStronglyNonOverlapping());
+            Assert.IsTrue(elen + flen == hlen);
+            Assert.IsTrue(h.Take(hlen).IsSorted());
+            Assert.IsTrue(h.Take(hlen).IsStronglyNonOverlapping());
 
             return hlen;
         }
@@ -155,8 +155,8 @@ namespace RobustGeometricPredicates.Test
             var hlen = FastExpansionSumZeroElim_Checked(elen, e, flen, f, h);
 
             // Check that we get the expected result
-            NUnit.Framework.Assert.AreEqual(4, hlen);
-            NUnit.Framework.Assert.AreEqual(15.0, h[0]);
+            Assert.AreEqual(4, hlen);
+            Assert.AreEqual(15.0, h[0]);
             // TODO: Check a bit more...
         }
 
@@ -174,9 +174,9 @@ namespace RobustGeometricPredicates.Test
             var hlen = FastExpansionSumZeroElim_Checked(e.Length, e, f.Length, f, h);
 
             // Check that we get the expected result
-            NUnit.Framework.Assert.AreEqual(2, hlen);
-            NUnit.Framework.Assert.AreEqual(hexp[0], h[0]);
-            NUnit.Framework.Assert.AreEqual(hexp[1], h[1]);
+            Assert.AreEqual(2, hlen);
+            Assert.AreEqual(hexp[0], h[0]);
+            Assert.AreEqual(hexp[1], h[1]);
 
             /* The numbers are like this (2 in e[1c] denotes the carry when subtracting)
 
@@ -199,20 +199,20 @@ namespace RobustGeometricPredicates.Test
         public static int FastExpansionSumZeroElim_Checked(int elen, double[] e, int flen, double[] f, double[] h)
         {
             // Always conditions for calling GrowExpansion
-            NUnit.Framework.Assert.IsTrue(e.Length >= elen);
-            NUnit.Framework.Assert.IsTrue(f.Length >= flen);
-            NUnit.Framework.Assert.IsTrue(h.Length >= elen + flen);
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsStronglyNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(f.Take(flen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(f.Take(flen).IsStronglyNonOverlapping());
+            Assert.IsTrue(e.Length >= elen);
+            Assert.IsTrue(f.Length >= flen);
+            Assert.IsTrue(h.Length >= elen + flen);
+            Assert.IsTrue(e.Take(elen).IsSorted());
+            Assert.IsTrue(e.Take(elen).IsStronglyNonOverlapping());
+            Assert.IsTrue(f.Take(flen).IsSorted());
+            Assert.IsTrue(f.Take(flen).IsStronglyNonOverlapping());
 
             int hlen = EA.FastExpansionSumZeroElim(elen, e, flen, f, h);
 
-            NUnit.Framework.Assert.IsTrue(elen + flen >= hlen);
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsStronglyNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsZeroElim());
+            Assert.IsTrue(elen + flen >= hlen);
+            Assert.IsTrue(h.Take(hlen).IsSorted());
+            Assert.IsTrue(h.Take(hlen).IsStronglyNonOverlapping());
+            Assert.IsTrue(h.Take(hlen).IsZeroElim());
 
             return hlen;
         }
@@ -228,25 +228,25 @@ namespace RobustGeometricPredicates.Test
 
             int hlen = Compress_Checked(elen, e, h);
 
-            NUnit.Framework.Assert.AreEqual(hlenexp, hlen);
-            NUnit.Framework.Assert.AreEqual(hexp[0], h[0]);
-            NUnit.Framework.Assert.AreEqual(hexp[1], h[1]);
+            Assert.AreEqual(hlenexp, hlen);
+            Assert.AreEqual(hexp[0], h[0]);
+            Assert.AreEqual(hexp[1], h[1]);
         }
 
         // This checks the conditions of S. Theorem 23 (except the approximation condition)
         // Compresses an expansion
         int Compress_Checked(int elen, double[] e, double[] h)
         {
-            NUnit.Framework.Assert.IsTrue(e.Length >= elen);
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(e.Take(elen).IsSorted());
+            Assert.IsTrue(e.Length >= elen);
+            Assert.IsTrue(e.Take(elen).IsNonOverlapping());
+            Assert.IsTrue(e.Take(elen).IsSorted());
 
             int hlen = EA.Compress(elen, e, h);
 
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsNonOverlapping());
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsNonAdjacent());
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsSorted());
-            NUnit.Framework.Assert.IsTrue(h.Take(hlen).IsZeroElim());
+            Assert.IsTrue(h.Take(hlen).IsNonOverlapping());
+            Assert.IsTrue(h.Take(hlen).IsNonAdjacent());
+            Assert.IsTrue(h.Take(hlen).IsSorted());
+            Assert.IsTrue(h.Take(hlen).IsZeroElim());
 
             return hlen;
         }

@@ -18,7 +18,7 @@ namespace RobustGeometricPredicates.Test
 
             var res = Orient2D_Checked(pa, pb, pc);
 
-            NUnit.Framework.Assert.AreEqual(1.0, res);
+            Assert.AreEqual(1.0, res);
 
         }
 
@@ -31,7 +31,7 @@ namespace RobustGeometricPredicates.Test
 
             var res = Orient2D_Checked(pa, pb, pc);
 
-            NUnit.Framework.Assert.AreEqual(-1.0, res);
+            Assert.AreEqual(-1.0, res);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace RobustGeometricPredicates.Test
 
             var res = Orient2D_Checked(pa, pb, pc);
 
-            NUnit.Framework.Assert.IsTrue(res>0.0);
+            Assert.IsTrue(res>0.0);
         }
 
         // Runs all the different versions, in different call orders
@@ -55,8 +55,8 @@ namespace RobustGeometricPredicates.Test
             double res2 = Orient2D_Checked_InOrder(pb, pc, pa);
             double res3 = Orient2D_Checked_InOrder(pc, pa, pb);
 
-            NUnit.Framework.Assert.AreEqual(res1, res2);
-            NUnit.Framework.Assert.AreEqual(res2, res3);
+            Assert.AreEqual(res1, res2);
+            Assert.AreEqual(res2, res3);
 
             return res1;
         }
@@ -68,8 +68,8 @@ namespace RobustGeometricPredicates.Test
             double slow  = GeometricPredicatesManaged.Orient2DSlow(pa, pb, pc);
             double adapt = GeometricPredicatesManaged.Orient2D(pa, pb, pc);
 
-            NUnit.Framework.Assert.AreEqual(exact, slow);
-            NUnit.Framework.Assert.AreEqual(exact, adapt);
+            Assert.AreEqual(exact, slow);
+            Assert.AreEqual(exact, adapt);
 
             // We don't expect these to be true, but it's nice to stop when they're not...
 //            Assert.IsTrue(Math.Sign(fast) == Math.Sign(exact));

@@ -26,25 +26,25 @@ namespace RobustGeometricPredicates.Test
                 var p4 = new double2(1.267650600228229e30, 1.2676506002282291e30);
 
                 // todo reinstate these when merging tests with unity package, if ever
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DFast(p1, p2, p3) > 0.0); // Wrong!
+                Assert.IsTrue(GeometricPredicates.Orient2DFast(p1, p2, p3) > 0.0); // Wrong!
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DExact(p1, p2, p3) < 0.0);
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DSlow(p1, p2, p3) < 0.0);
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2D(p1, p2, p3) < 0.0);
+                Assert.IsTrue(GeometricPredicates.Orient2D(p1, p2, p3) < 0.0);
 
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DFast(p1, p2, p4) == 0.0); // Wrong!
+                Assert.IsTrue(GeometricPredicates.Orient2DFast(p1, p2, p4) == 0.0); // Wrong!
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DExact(p1, p2, p4) < 0.0);
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DSlow(p1, p2, p4) < 0.0);
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2D(p1, p2, p4) < 0.0);
+                Assert.IsTrue(GeometricPredicates.Orient2D(p1, p2, p4) < 0.0);
 
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DFast(p2, p3, p4) == 0.0); // Wrong!
+                Assert.IsTrue(GeometricPredicates.Orient2DFast(p2, p3, p4) == 0.0); // Wrong!
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DExact(p2, p3, p4) < 0.0);
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DSlow(p2, p3, p4) < 0.0);
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2D(p2, p3, p4) < 0.0);
+                Assert.IsTrue(GeometricPredicates.Orient2D(p2, p3, p4) < 0.0);
 
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DFast(p3, p1, p4) == 0.0); // Wrong!
+                Assert.IsTrue(GeometricPredicates.Orient2DFast(p3, p1, p4) == 0.0); // Wrong!
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DExact(p3, p1, p4) > 0.0);
                 // NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2DSlow(p3, p1, p4) > 0.0);
-                NUnit.Framework.Assert.IsTrue(GeometricPredicates.Orient2D(p3, p1, p4) > 0.0);
+                Assert.IsTrue(GeometricPredicates.Orient2D(p3, p1, p4) > 0.0);
             }
         }
     }
