@@ -4,6 +4,10 @@ A BURST compatible implementation of the [robust arithmetic and geometric predic
 
 The master branch contains a full Unity 2020.3.9 LTS project including unit tests.
 
-To install the package open the package manager, choose Add package from git URL and enter:
+The recommended way of installing the package is through the [OpenUPM](https://openupm.com/packages/com.bassmit.robustgeometricpredicates/) package installer (top right). Download and add the unitypackage to a project to install the package, including setting up the scoped registry required.
+
+Alternatively, open the package manager, choose Add package from git URL and enter:
 
     https://github.com/bassmit/robustgeometricpredicates.git#upm
+
+Note that you will not be notified of updates to packages installed in this way.
