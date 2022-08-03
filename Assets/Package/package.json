@@ -1,10 +1,10 @@
 {
   "name": "com.bassmit.robustgeometricpredicates",
   "displayName": "Robust Geometric Predicates",
-  "version": "0.1.1",
-  "unity": "2020.3",
+  "version": "0.1.2",
+  "unity": "2021.3",
   "dependencies": {
-    "com.unity.mathematics": "1.2.1"
+    "com.unity.mathematics": "1.2.6"
   },
   "description": "Burst compatible implementation of Adaptive Precision Floating-Point Arithmetic and Fast Robust Geometric Predicates, Shewchuk 1996. This package is a port of Govert van Drimmelen's RobustGeometry.NET.",
   "author" : {
